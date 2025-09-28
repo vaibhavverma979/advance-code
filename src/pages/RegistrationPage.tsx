@@ -79,6 +79,30 @@ const RegistrationPage = () => {
 
   const config = roleConfig[role as keyof typeof roleConfig];
   
+  // Admin users cannot register - they are created by system administrators
+  if (role === "admin") {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Card>
+          <CardContent className="p-6">
+            <p className="text-center mb-4">Admin accounts cannot be registered through this portal.</p>
+            <p className="text-center text-muted-foreground mb-4">
+              Admin accounts are created by system administrators only.
+            </p>
+            <div className="flex gap-2 justify-center">
+              <Button onClick={() => navigate("/login/admin")} variant="default">
+                Admin Login
+              </Button>
+              <Button onClick={() => navigate("/")} variant="outline">
+                Go Home
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+  
   if (!config) {
     return (
       <div className="min-h-screen flex items-center justify-center">

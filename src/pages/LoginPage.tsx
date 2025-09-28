@@ -175,24 +175,39 @@ const LoginPage = () => {
                 </Button>
               </form>
 
-              <Separator className="my-6" />
+              {role !== 'admin' && (
+                <>
+                  <Separator className="my-6" />
 
-              <div className="text-center text-sm">
-                <span className="text-muted-foreground">Don't have an account? </span>
-                <Link 
-                  to={`/register/${role}`}
-                  className="text-primary hover:underline font-medium"
-                >
-                  Register here
-                </Link>
-              </div>
+                  <div className="text-center text-sm">
+                    <span className="text-muted-foreground">Don't have an account? </span>
+                    <Link 
+                      to={`/register/${role}`}
+                      className="text-primary hover:underline font-medium"
+                    >
+                      Register here
+                    </Link>
+                  </div>
+                </>
+              )}
 
               {/* Demo Credentials */}
               <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-                <p className="text-sm font-medium mb-2">Demo Credentials:</p>
+                <p className="text-sm font-medium mb-2">
+                  {role === 'admin' ? 'Admin Credentials:' : 'Demo Credentials:'}
+                </p>
                 <p className="text-xs text-muted-foreground">
-                  Email: demo@example.com<br />
-                  Password: demo123
+                  {role === 'admin' ? (
+                    <>
+                      Email: admin@careerpath.com<br />
+                      Password: admin2024
+                    </>
+                  ) : (
+                    <>
+                      Email: demo@example.com<br />
+                      Password: demo123
+                    </>
+                  )}
                 </p>
               </div>
             </CardContent>
