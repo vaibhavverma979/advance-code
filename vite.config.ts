@@ -8,8 +8,8 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "0.0.0.0",
     port: 5000,
-    // THE CRITICAL FIX: Allow all Replit-generated hostnames
-    allowedHosts: ['.replit.dev'], 
+    // THE CRITICAL FIX: Allow all hosts for Replit proxy
+    allowedHosts: true, 
     
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
